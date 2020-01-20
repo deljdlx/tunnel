@@ -87,6 +87,7 @@
 
 
     #selector {
+        display: flex;
         padding-bottom: 8px;
         margin-bottom: 8px;
         border-bottom: solid 1px #AAA;
@@ -114,11 +115,15 @@
 
 <main>
     <form id="selector">
-
-        <input id="query" placeholder="Exemple $array[5][3][2]" value="$array[5]['date']['day']"/><button>ok</button>
+        <div style="background-image: url(eye.png); height: 64px; width: 64px; background-size: contain"></div>
+        <input id="query" placeholder="Exemple $array[0]" value="$array[0]"/><button>ok</button>
     </form>
 
-    <div id="container"></div>
+
+        <div id="container"></div>
+
+
+
 </main>
 
 

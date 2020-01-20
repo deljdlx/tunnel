@@ -1,7 +1,7 @@
 <?php
 
-
-$extras = [
+//you have to define the $array variable
+$array = [
     [
       'label' => 'Popcorn',
       'size' => 'L',
@@ -35,31 +35,8 @@ $extras = [
   ];
 
 
-$tarifs = [];
-
-/*
-$tarifs[] = 4.5;
-$tarifs[] = 6.8;
-$tarifs[] = 8.3;
-*/
-
-
-/*
-$tarifs['tarifEnfant'] = 4.5;
-$tarifs['tarifReduit'] = 6.8;
-$tarifs['tarifPlein'] = 8.3;
-*/
-
-
-$array = $extras;
-
-
-
-
-
-
-
-
+//=======================================================
+//do not touch this code
 //=======================================================
 //ignore this code ; here for demo purposes
 if (!isset($value)) {
