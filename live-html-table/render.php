@@ -57,6 +57,14 @@ function renderVerticalTable($array)
             $buffer .= '<td class="index-' . simpleSlug($index) . '">' . $value . '</td>';
         }
         else {
+            if(is_bool($value)) {
+                if($value === true) {
+                    $value = '(bool) true';
+                }
+                else {
+                    $value = '(bool) false';
+                }
+            }
             $buffer .= '<td class="index-' . simpleSlug($index) . '"><span class="value ' . gettype($value) . '">' . $value . '</span></td>';
         }
 

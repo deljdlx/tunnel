@@ -40,6 +40,33 @@ $array = [
   ];
 
 
+
+$array = [
+    'notice' => [
+        'estGrave' => false,
+        'coupeLeScript' => false,
+        'toto' => [1,2,3,4],
+        'texte' => 'pas très grave, mais il faut la corriger'
+    ],
+    'warning' => [
+        'estGrave' => true,
+        'coupeLeScript' => false,
+        'texte' => 'assez grave, mais ne coupe pas le script'
+    ],
+    'fatal' => [
+        'estGrave' => true,
+        'coupeLeScript' => true,
+        'texte' => 'erreur grave, le script est coupé au moment où l\'erreur est rencontrée'
+    ],
+    'parse' => [
+        'estGrave' => true,
+        'coupeLeScript' => true,
+        'texte' => 'très grave, le script n\'est même pas exécuté car PHP a vu que la syntaxe était incorrecte'
+    ]
+];
+
+
+
 //=======================================================
 //do not touch this code
 //=======================================================
