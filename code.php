@@ -3,6 +3,11 @@
 //you have to define the $array variable
 $array = [
     [
+        'test 2' => 'Popcorn',
+        'size' => 'L',
+        'price' => 2.9
+    ],
+    [
       'label' => 'Popcorn',
       'size' => 'L',
       'price' => 2.9

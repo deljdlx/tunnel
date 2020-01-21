@@ -132,6 +132,13 @@
 
 <script>
 
+    function slugify(string) {
+        let slug = string;
+        slug = slug.replace(/[^a-zA-Z0-9]/g, '-');
+
+        return slug;
+    }
+
     function refresh() {
         $.ajax({
             url: 'render.php?' + (new Date()).getTime(),
@@ -158,19 +165,15 @@
             value = value.replace("'", '');
             value = value.replace('"', '');
             value = value.replace('"', '');
-            console.log(value);
+
             indexes.push(value);
         }
 
-
-
         let selector = '#container > ';
         for(let value of indexes) {
+            value = slugify(value);
             selector += ' table > tbody > tr > td.index-'+value;
         }
-
-        console.log(selector);
-
 
         document.querySelectorAll('.selected').forEach((element) => {
             element.classList.remove('selected');
