@@ -56,4 +56,4 @@ document.getElementById('selector').addEventListener('submit', (event) => {
 });
 
 let application = new Application('editor');
-application.loadExemple('months');
+application.loadExemple('week');
