@@ -1,107 +1,28 @@
+<?php
+
+$exemplePath = __DIR__.'/../data';
+$files = glob($exemplePath.'/*.php');
+
+
+
+
+?>
 <!doctype html>
 <html>
 <head>
-
+    <link rel="shortcut icon"
+          href="resource/eye.png">
     <title>
-        The array viewer
+        Chameleon eyes -  the array viewer
     </title>
 
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet">
-<style>
-    body {
 
-        font-family: Helvetica, Verdana, sans-serif;
-        padding:0;
-        margin:0;
-        background-color:#334
-    }
-
-    table {
-        border-collapse: collapse;
-        margin:0;
-        border: none;
-        border-spacing: 0;
-    }
-
-    td, th {
-        border: solid 1px #AAA;
-
-   }
-    td {
-        min-width: 50px;
-        vertical-align: top;
-        background-color:rgba(230, 230, 230, 0.5);
-    }
-
-    th {
-        color:#EEE;
-        min-width: 20px;
-        padding: 2px 4px;
-    }
-
-    th.type {
-        font-size: 10px;
-    }
-
-    table.horizontal > tbody > tr > th {
-        background-color:#555;
-    }
-
-    table.vertical > tbody > tr > th {
-        background-color:#55D;
-    }
-
-
-    #container {
-        position: relative;
-        left:0;
-        top:0;
-    }
-
-    span.value {
-        display: block;
-        padding:4px 8px;
-        background-color:#FFF;
-    }
-
-    .selected {
-        background-color: #AFF;
-        animation: blink 1s;
-        animation-iteration-count: infinite;
-    }
-
-    @keyframes blink {
-        0% {background-color: #0FF;}
-        50% {background-color: #F0F;}
-        100% {background-color: #0FF;}
-    }
-    .selected span.value {
-        background-color: transparent;
-    }
-
-
-
-    main {
-        margin: 20px;
-    }
-
-
-    #selector {
-        display: flex;
-        padding-bottom: 8px;
-        margin-bottom: 8px;
-        border-bottom: solid 1px #AAA;
-    }
-
-    #selector input, #selector button {
-        font-size: 2rem;
-        padding: 4px 8px;
-    }
-
-
-</style>
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.4/css/bootstrap.min.css"
+          rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="resource/style.css"/>
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/black-tie/jquery-ui.css"/>
+
 
     <script
             src="https://code.jquery.com/jquery-3.4.1.js"
@@ -113,83 +34,44 @@
 </head>
 <body>
 
+
 <main>
-    <form id="selector">
-        <div style="background-image: url(eye.png); height: 64px; width: 64px; background-size: contain"></div>
-        <input id="query" placeholder="Exemple $array[0]" value="$array[0]"/><button>ok</button>
-    </form>
+
+    <div id="editor-container">
+        <select id="exemple-selector">
+            <option selected disabled>Charger un exemple</option>
+        <?php
+            foreach ($files as $path) {
+                $name = basename($path);
+                $name = str_replace('.php', '', $name);
+                echo '<option value="'.$name.'">'. $name. '</option>';
+            }
+        ?>
+        </select>
 
 
+
+        <div id="editor"></div>
+    </div>
+
+    <div id="viewer">
+        <form id="selector">
+            <div id="eye"></div>
+            <input id="query" placeholder="Exemple $array[0]" value="$array[0]"/>
+            <button>ok</button>
+        </form>
         <div id="container"></div>
-
+    </div>
 
 
 </main>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.7/js/tether.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.4/js/bootstrap.min.js"></script>
 
-
-
-
-<script>
-
-    function slugify(string) {
-        let slug = string;
-        slug = slug.replace(/[^a-zA-Z0-9]/g, '-');
-
-        return slug;
-    }
-
-    function refresh() {
-        $.ajax({
-            url: 'render.php?' + (new Date()).getTime(),
-            success: function(response) {
-                document.getElementById('container').innerHTML = response;
-                setTimeout(function() {
-                    //refresh();
-                }, 500);
-            }
-        })
-    }
-   refresh();
-
-    document.getElementById('selector').addEventListener('submit', (event) => {
-        event.preventDefault();
-        let query = document.getElementById('query').value;
-
-        let matches = query.match(/\[(.*?)\]/gi);
-        let indexes = [];
-        for(let value of matches) {
-            value = value.replace('[', '');
-            value = value.replace(']', '');
-            value = value.replace("'", '');
-            value = value.replace("'", '');
-            value = value.replace('"', '');
-            value = value.replace('"', '');
-
-            indexes.push(value);
-        }
-
-        let selector = '#container > ';
-        for(let value of indexes) {
-            value = slugify(value);
-            selector += ' table > tbody > tr > td.index-'+value;
-        }
-
-        document.querySelectorAll('.selected').forEach((element) => {
-            element.classList.remove('selected');
-        });
-
-        let node = document.querySelector(selector);
-        if(node) {
-            node.classList.add('selected');
-        }
-        else {
-            alert('index inexistant')
-        }
-
-    });
-
-</script>
+<script src="vendor/ace-builds/src-min/ace.js"></script>
+<script src="resource/Application.js"></script>
+<script src="resource/script.js"></script>
 
 
 </body>

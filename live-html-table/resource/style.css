@@ -1,0 +1,149 @@
+:root {
+    --form-height: 70px;
+}
+
+body {
+
+    font-family: Helvetica, Verdana, sans-serif;
+    padding: 0;
+    margin: 0;
+    background-color: #334
+}
+
+table {
+    border-collapse: collapse;
+    margin: 0;
+    border: none;
+    border-spacing: 0;
+
+}
+
+td, th {
+    border: solid 1px #AAA;
+    box-sizing: border-box;
+
+
+}
+
+td {
+
+    vertical-align: top;
+    background-color: rgba(230, 230, 230, 0.5);
+}
+
+th {
+    color: #EEE;
+
+    padding: 2px 4px;
+}
+
+th.type {
+    font-size: 10px;
+    width:50px;
+}
+
+table.horizontal > tbody > tr > th {
+    background-color: #555;
+    width: 20px !important;
+}
+
+table.vertical > tbody > tr > th {
+    background-color: #55D;
+}
+
+
+
+td.array-value {
+    cursor: pointer;
+}
+
+span.value {
+    display: block;
+    padding: 4px 8px;
+    background-color: #FFF;
+}
+
+.selected {
+    background-color: #AFF;
+    animation: blink 1s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes blink {
+    0% {
+        background-color: #FFA;
+    }
+    50% {
+        background-color: #FAA;
+    }
+    100% {
+        background-color: #FFA;
+    }
+}
+
+.selected span.value {
+    background-color: transparent;
+}
+
+
+main {
+    height: 100vh;
+    width: 100vw;
+}
+
+#viewer {
+    position: absolute;
+    top: 0;
+    left: 600px;
+    width: calc(100vw - 600px);
+    height: 100vh;
+    background-color: #CCC;
+
+}
+
+#container {
+    position: relative;
+    width: 100%;
+    height: calc(100% - var(--form-height));
+    left: 0;
+    top: 0;
+    overflow: auto;
+}
+
+
+#eye {
+    background-image: url(eye.png);
+    height: var(--form-height);
+    width: var(--form-height);
+    background-size: contain
+}
+
+#selector {
+    display: flex;
+    height: var(--form-height);
+}
+
+#selector input, #selector button {
+    font-size: 2rem;
+    padding: 4px 8px;
+}
+#selector input {
+    flex-grow: 1;
+}
+
+
+
+#editor-container {
+    top: 0;
+    left: 0;
+    position: absolute;
+    height: 100vh;
+    width: 600px;
+
+}
+
+#editor {
+    margin-top: 1px;
+    height: calc(100vh - 32px);
+}
+
